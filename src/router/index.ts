@@ -1,11 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
-/* 
-const AboutPage = () => import('@/views/AboutPage.vue')
-const ContactPage = () => import('@/views/ContactPage.vue')
-const SamplePage = () => import('@/views/SamplePage.vue')
-*/
 const HomePage = () => import('@/views/HomePage.vue')
 const WpPage = () => import('@/views/WpPage.vue')
 const NotFound = () => import('@/views/NotFound.vue')
@@ -19,7 +14,7 @@ const routes: RouteRecordRaw[] = [
   // Dynamic WordPress page by slug
   // Dynamic WordPress page by slug (catch-all for pages)
   {
-    path: '/:slug',
+    path: '/:slug(.*)',
     name: 'wp-page',
     component: WpPage,
   },
