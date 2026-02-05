@@ -30,30 +30,24 @@ const socialLinks = [
 
 const footerSections = [
   {
-    title: 'Company',
+    title: 'Resources',
     links: [
-      { title: 'About Us', url: '/about' },
-      { title: 'Careers', url: '/careers' },
-      { title: 'Press', url: '/press' },
-      { title: 'Contact', url: '/contact' },
+      { title: 'Strategies', url: '/strategies' },
+      { title: 'Performance', url: '/performance' },
+      { title: 'Insights', url: '/insights' },
+      { title: 'Get Started', url: '/get-started' },
     ]
   },
   {
-    title: 'Resources',
+    title: 'Company',
     links: [
-      { title: 'Investment Guide', url: '/guide' },
-      { title: 'Market Analysis', url: '/analysis' },
-      { title: 'Blog', url: '/blog' },
-      { title: 'FAQ', url: '/faq' },
+      { title: 'About Us', url: '/about-us' },
     ]
   },
   {
     title: 'Legal',
     links: [
-      { title: 'Privacy Policy', url: '/privacy' },
-      { title: 'Terms of Service', url: '/terms' },
-      { title: 'Disclaimers', url: '/disclaimers' },
-      { title: 'Compliance', url: '/compliance' },
+      { title: 'Privacy Policy', url: '/privacy-policy' },
     ]
   }
 ]
