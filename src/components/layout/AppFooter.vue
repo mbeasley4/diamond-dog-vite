@@ -132,7 +132,7 @@ const footerSections = [
           <ul class="flex flex-col gap-4">
             <li v-for="link in section.links" :key="link.title">
               <RouterLink
-                :to="toRoute(link.url)"
+                :to="link.url"
                 class="text-brand-blue/80 hover:text-brand-gold transition-colors duration-300
                        text-sm font-medium inline-flex items-center group"
               >
