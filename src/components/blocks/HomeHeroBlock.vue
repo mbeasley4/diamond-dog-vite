@@ -53,7 +53,7 @@ const props = defineProps<{
            style="animation: float 9s ease-in-out infinite; animation-delay: 0.5s" />
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
+    <div class="relative max-w-7xl mx-auto px-6 py-15 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
 
       <div class="relative z-10">
         <!-- Aggressive badge with pulsing glow -->
