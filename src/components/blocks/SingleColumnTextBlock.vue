@@ -17,12 +17,7 @@ const sanitizedHtml = computed(() => {
  
 <template>
   <section class="relative overflow-hidden bg-brand-light text-brand-dark">
-    <div class="relative max-w-5xl mx-auto px-6 py-28 md:py-40">
-      <div 
-        class="mt-8 text-brand-dark prose prose-lg prose-blue max-w-none" 
-        v-html="sanitizedHtml"
-      ></div>
-    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-20" v-html="sanitizedHtml"></div>
   </section>
 </template>
 
