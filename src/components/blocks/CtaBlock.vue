@@ -11,7 +11,7 @@ const props = defineProps<{
 </script> 
  
 <template>
-  <section class="relative overflow-hidden bg-brand-dark">
+  <section class="relative overflow-hidden bg-brand-dark text-brand-light">
     <!-- Subtle dot pattern background -->
     <div class="absolute inset-0 opacity-[0.06]">
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(252,211,77,0.4)_1px,transparent_1px)]

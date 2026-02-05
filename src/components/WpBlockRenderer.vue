@@ -5,6 +5,7 @@ import HomeHeroBlock from '@/components/blocks/HomeHeroBlock.vue'
 import InteriorHeroBlock from '@/components/blocks/InteriorHeroBlock.vue'
 import TwoColumnBlock from './blocks/TwoColumnBlock.vue'
 import FeatureSectionBlock from '@/components/blocks/FeatureSectionBlock.vue'
+import SingleColumnTextBlock from './blocks/SingleColumnTextBlock.vue'
 import CtaBlock from '@/components/blocks/CtaBlock.vue'
 import { ref, watch } from 'vue'
 
@@ -19,6 +20,7 @@ const componentMap: Record<string, any> = {
   interior_hero: InteriorHeroBlock,
   feature_section: FeatureSectionBlock,
   two_column: TwoColumnBlock,
+  single_column_text: SingleColumnTextBlock,
   cta: CtaBlock,  
 }
 
