@@ -7,11 +7,13 @@ import WpBlockRenderer from '@/components/WpBlockRenderer.vue'
 
 const route = useRoute()
 const page = ref<any>(null)
+const loading = ref(true)
 
-async function loadPage() {  
+async function loadPage() {
+  loading.value = true
   const { data } = await wp.get(`/wp/v2/pages?slug=${route.params.slug}`)
   page.value = data?.[0] ?? null
-
+  loading.value = false
 }
 
 onMounted(loadPage)
@@ -19,6 +21,9 @@ watch(() => route.params.slug, loadPage)
 </script>
 
 <template>
-  <NotFound v-if="!page" />
-  <WpBlockRenderer :page="page" />
+  <div class="min-h-full">
+    <template v-if="loading" />
+    <NotFound v-else-if="!page" />
+    <WpBlockRenderer v-else :page="page" />
+  </div>
 </template>

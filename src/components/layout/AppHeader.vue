@@ -90,7 +90,7 @@ function closeMenu() {
           v-if="site.logo"
           :src="site.logo"
           alt="Diamond Dog Capital Investments"
-          class="h-13 md:h-18 w-auto transition group-hover:scale-105"
+          class="h-12 md:h-14 w-auto transition group-hover:scale-105"
         />
         <span v-if="site.name" class="sr-only">{{ site.name }}</span>
       </RouterLink>
@@ -101,7 +101,7 @@ function closeMenu() {
           <li v-for="item in menu" :key="item.ID">
             <RouterLink
               :to="toRoute(item.url)"
-              class="relative text-sm uppercase tracking-wide text-brand-light/80 hover:text-brand-gold transition"
+              class="relative text-lg uppercase tracking-wide text-brand-light/80 hover:text-brand-gold transition"
               :class="{
                 'text-brand-gold font-semibold after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:bg-brand-gold after:rounded-full':
                   route.path === toRoute(item.url)
