@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { toRoute } from '@/utils/toRoute'
 
@@ -14,15 +14,51 @@ type SiteInfo = {
   logo?: string | null
 }
 
+type TickerItem = {
+  symbol: string
+  price: number
+  change: number
+}
+
+const SYMBOLS = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA', 'TSLA', 'SPY', 'QQQ']
+const FINNHUB_KEY = import.meta.env.VITE_FINNHUB_API_KEY
+
 const menu = ref<MenuItem[]>([])
 const site = ref<SiteInfo>({})
+const tickers = ref<TickerItem[]>([])
 const route = useRoute()
 
 const isOpen = ref(false)
+let tickerInterval: ReturnType<typeof setInterval> | null = null
+
+async function fetchTickers() {
+  if (!FINNHUB_KEY) return
+  const results = await Promise.allSettled(
+    SYMBOLS.map(symbol =>
+      fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_KEY}`)
+        .then(res => res.json())
+        .then(data => ({
+          symbol,
+          price: data.c as number,
+          change: data.c && data.pc ? ((data.c - data.pc) / data.pc) * 100 : 0,
+        }))
+    )
+  )
+  const items = results
+    .filter((r): r is PromiseFulfilledResult<TickerItem> => r.status === 'fulfilled' && r.value.price > 0)
+    .map(r => r.value)
+  if (items.length) tickers.value = items
+}
 
 onMounted(async () => {
   menu.value = await fetch(`${import.meta.env.VITE_WP_API}/theme/v1/menu`).then(res => res.json())
   site.value = await fetch(`${import.meta.env.VITE_WP_API}/theme/v1/site`).then(res => res.json())
+  fetchTickers()
+  tickerInterval = setInterval(fetchTickers, 60_000)
+})
+
+onUnmounted(() => {
+  if (tickerInterval) clearInterval(tickerInterval)
 })
 
 function closeMenu() {
@@ -32,15 +68,29 @@ function closeMenu() {
 
 <template>
   <header class="sticky top-0 z-50 w-full bg-brand-dark/90 backdrop-blur border-b border-brand-gold/20">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Stock Ticker Eyebrow -->
+    <div v-if="tickers.length" class="ticker-eyebrow bg-brand-gold text-brand-dark overflow-hidden">
+      <div class="ticker-track">
+        <span v-for="(item, i) in [...tickers, ...tickers]" :key="i" class="ticker-item">
+          <span class="font-bold">{{ item.symbol }}</span>
+          <span class="ml-1">${{ item.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</span>
+          <span class="ml-1" :class="item.change >= 0 ? 'text-brand-green' : 'text-red-700'">
+            {{ item.change >= 0 ? '▲' : '▼' }} {{ Math.abs(item.change).toFixed(2) }}%
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center gap-3 group">
         <img
           v-if="site.logo"
           :src="site.logo"
-          alt="Logo"
-          class="h-14 md:h-20 w-auto transition group-hover:scale-105"
+          alt="Diamond Dog Capital Investments"
+          class="h-13 md:h-18 w-auto transition group-hover:scale-105"
         />
         <span v-if="site.name" class="sr-only">{{ site.name }}</span>
       </RouterLink>
@@ -135,3 +185,29 @@ function closeMenu() {
   </Teleport>
   </header>
 </template>
+
+<style scoped>
+.ticker-eyebrow {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.025em;
+}
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.ticker-item {
+  padding: 0 1.5rem;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
