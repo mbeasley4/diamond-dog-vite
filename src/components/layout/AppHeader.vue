@@ -20,7 +20,7 @@ type TickerItem = {
   change: number
 }
 
-const SYMBOLS = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA', 'TSLA', 'SPY', 'QQQ']
+const SYMBOLS = ['GE', 'PG', 'GOOGL', 'KR', 'AFG', 'CTAS', 'FITB']
 const FINNHUB_KEY = import.meta.env.VITE_FINNHUB_API_KEY
 
 const menu = ref<MenuItem[]>([])
