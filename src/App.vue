@@ -4,7 +4,7 @@
     <main class="flex-1">
       <router-view v-slot="{ Component }">
         <KeepAlive>
-          <component :is="Component" :key="$route.path" />
+          <component :is="Component" />
         </KeepAlive>
       </router-view>
     </main>

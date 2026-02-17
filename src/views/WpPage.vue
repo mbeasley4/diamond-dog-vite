@@ -22,7 +22,7 @@ async function loadPage() {
   loading.value = false
 }
 
-if (!page.value) onMounted(loadPage)
+onMounted(loadPage)
 watch(() => route.params.slug, loadPage)
 </script>
 
