@@ -3,7 +3,9 @@
     <AppHeader />
     <main class="flex-1">
       <router-view v-slot="{ Component }">
-        <component :is="Component" :key="$route.path" />
+        <KeepAlive>
+          <component :is="Component" :key="$route.path" />
+        </KeepAlive>
       </router-view>
     </main>
     <AppFooter />
