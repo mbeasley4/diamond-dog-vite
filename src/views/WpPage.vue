@@ -13,6 +13,7 @@ async function loadPage() {
   const slug = route.params.slug as string
   if (hasCachedPage(slug)) {
     page.value = getCachedPage(slug)
+    loading.value = false
     return
   }
   loading.value = true
