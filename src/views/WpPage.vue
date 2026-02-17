@@ -6,8 +6,9 @@ import WpBlockRenderer from '@/components/WpBlockRenderer.vue'
 import { hasCachedPage, getCachedPage, fetchAndCachePage } from '@/api/wpPageCache'
 
 const route = useRoute()
-const page = ref<any>(null)
-const loading = ref(true)
+const initialSlug = route.params.slug as string
+const page = ref<any>(hasCachedPage(initialSlug) ? getCachedPage(initialSlug) : null)
+const loading = ref(!page.value)
 
 async function loadPage() {
   const slug = route.params.slug as string
@@ -21,7 +22,7 @@ async function loadPage() {
   loading.value = false
 }
 
-onMounted(loadPage)
+if (!page.value) onMounted(loadPage)
 watch(() => route.params.slug, loadPage)
 </script>
 
