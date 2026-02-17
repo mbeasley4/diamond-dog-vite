@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { toRoute } from '@/utils/toRoute'
+import { prefetchPages } from '@/api/wpPageCache'
 
 type MenuItem = {
   ID: number
@@ -53,6 +54,10 @@ async function fetchTickers() {
 onMounted(async () => {
   menu.value = await fetch(`${import.meta.env.VITE_WP_API}/theme/v1/menu`).then(res => res.json())
   site.value = await fetch(`${import.meta.env.VITE_WP_API}/theme/v1/site`).then(res => res.json())
+
+  // Prefetch all menu pages into cache so navigation is instant
+  const slugs = menu.value.map((item: MenuItem) => toRoute(item.url).replace(/^\//, '')).filter(Boolean)
+  prefetchPages(slugs)
   fetchTickers()
   tickerInterval = setInterval(fetchTickers, 60_000)
 })
