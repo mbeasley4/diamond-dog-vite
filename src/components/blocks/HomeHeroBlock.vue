@@ -53,7 +53,7 @@ const props = defineProps<{
            style="animation: float 9s ease-in-out infinite; animation-delay: 0.5s" />
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-6 py-15 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
 
       <div class="relative z-10">
         <!-- Aggressive badge with pulsing glow -->
@@ -72,7 +72,7 @@ const props = defineProps<{
         </div>
 
         <!-- MASSIVE headline with aggressive styling -->
-        <h1 class="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tighter mb-8
+        <h1 class="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tighter mb-6 md:mb-8
                    animate-[fadeInUp_0.8s_ease-out_0.2s_backwards]"
                    style="font-family: 'Impact', 'Anton', 'Bebas Neue', sans-serif;">
           <span class="block text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
@@ -107,9 +107,9 @@ const props = defineProps<{
                         group-hover:opacity-80 transition-opacity duration-500 scale-110" />
             
             <!-- Button -->
-            <div class="relative w-full sm:w-auto text-center 
+            <div class="relative w-full sm:w-auto text-center
                         bg-gradient-to-r from-brand-gold via-yellow-300 to-brand-gold
-                        text-brand-dark font-black text-lg px-10 py-5 rounded-2xl
+                        text-brand-dark font-black text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5 rounded-2xl
                         shadow-[0_0_50px_rgba(252,211,77,0.6),inset_0_2px_20px_rgba(255,255,255,0.3)]
                         border-4 border-yellow-200/50
                         group-hover:scale-105 group-hover:shadow-[0_0_80px_rgba(252,211,77,0.9)]
@@ -127,7 +127,7 @@ const props = defineProps<{
           <!-- Secondary CTA -->
           <RouterLink :to="toRoute(data.cta_secondary.url)"
                       class="group relative">
-            <div class="relative w-full sm:w-auto text-center px-10 py-5 rounded-2xl font-bold text-lg
+            <div class="relative w-full sm:w-auto text-center px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold text-base sm:text-lg
                         border-4 border-brand-gold/60 text-brand-gold
                         bg-brand-gold/5 backdrop-blur-sm
                         hover:bg-brand-gold/20 hover:border-brand-gold
@@ -142,7 +142,7 @@ const props = defineProps<{
         </div>
 
         <!-- Decorative stats or trust indicators (optional) -->
-        <div class="mt-16 flex gap-8 text-brand-blue/70 text-sm uppercase tracking-widest
+        <div class="mt-10 md:mt-16 flex flex-wrap gap-4 sm:gap-8 text-brand-blue/70 text-sm uppercase tracking-widest
                     animate-[fadeInUp_0.8s_ease-out_0.8s_backwards]">
           <div class="flex items-center gap-2">
             <div class="h-2 w-2 rounded-full bg-brand-gold shadow-[0_0_10px_rgba(252,211,77,0.8)] animate-pulse" />
@@ -162,13 +162,13 @@ const props = defineProps<{
       </div>
 
       <!-- Image section with AGGRESSIVE styling -->
-      <div class="relative mt-10 lg:mt-0 animate-[fadeInRight_1s_ease-out_0.4s_backwards]">
+      <div class="relative mt-4 lg:mt-0 animate-[fadeInRight_1s_ease-out_0.4s_backwards]">
         <!-- Multiple layered glows -->
-        <div class="absolute -inset-16 md:-inset-24 rounded-full 
-                    bg-gradient-to-br from-brand-gold/30 via-brand-blue/20 to-brand-gold/30 
-                    blur-[120px] md:blur-[160px] animate-pulse" />
-        <div class="absolute -inset-12 md:-inset-20 rounded-full 
-                    bg-brand-gold/40 blur-[100px] opacity-50" />
+        <div class="absolute -inset-8 md:-inset-24 rounded-full
+                    bg-gradient-to-br from-brand-gold/30 via-brand-blue/20 to-brand-gold/30
+                    blur-[80px] md:blur-[160px] animate-pulse" />
+        <div class="absolute -inset-6 md:-inset-20 rounded-full
+                    bg-brand-gold/40 blur-[60px] md:blur-[100px] opacity-50" />
         
         <!-- Decorative rotating ring -->
         <div class="absolute inset-0 animate-[spin_20s_linear_infinite]">
@@ -194,11 +194,11 @@ const props = defineProps<{
                       transition-all duration-700 pointer-events-none" />
         </div>
 
-        <!-- Corner accent decorations -->
-        <div class="absolute -top-8 -right-8 w-24 h-24 border-4 border-brand-gold/40 rounded-full
+        <!-- Corner accent decorations (hidden on small screens to prevent overflow) -->
+        <div class="hidden sm:block absolute -top-8 -right-8 w-24 h-24 border-4 border-brand-gold/40 rounded-full
                     animate-[ping_3s_ease-in-out_infinite]" />
-        <div class="absolute -bottom-8 -left-8 w-32 h-32 border-4 border-brand-blue/30 rounded-full
-                    animate-[ping_4s_ease-in-out_infinite]" 
+        <div class="hidden sm:block absolute -bottom-8 -left-8 w-32 h-32 border-4 border-brand-blue/30 rounded-full
+                    animate-[ping_4s_ease-in-out_infinite]"
                     style="animation-delay: 1s" />
       </div>
 
