@@ -57,10 +57,10 @@ const props = defineProps<{
 
       <div class="relative z-10">
         <!-- Aggressive badge with pulsing glow -->
-        <div class="mb-8 inline-block animate-[fadeInUp_0.8s_ease-out]">
+        <div class="mb-8 flex justify-center lg:justify-start animate-[fadeInUp_0.8s_ease-out]">
           <div class="relative">
             <div class="absolute inset-0 bg-brand-gold rounded-full blur-xl opacity-60 animate-pulse" />
-            <span class="relative inline-block px-6 py-2.5 rounded-full text-xs md:text-sm tracking-[0.25em] uppercase font-black
+            <span class="relative inline-block px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[10px] md:text-sm tracking-[0.12em] md:tracking-[0.25em] uppercase font-black
                          bg-gradient-to-r from-brand-gold via-yellow-300 to-brand-gold
                          text-brand-dark
                          shadow-[0_0_40px_rgba(252,211,77,0.8),inset_0_2px_12px_rgba(255,255,255,0.4)]
@@ -72,7 +72,8 @@ const props = defineProps<{
         </div>
 
         <!-- MASSIVE headline with aggressive styling -->
-        <h1 class="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tighter mb-6 md:mb-8
+        <h1 class="text-6xl sm:text-6xl md:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tighter mb-6 md:mb-8
+                   text-center lg:text-left
                    animate-[fadeInUp_0.8s_ease-out_0.2s_backwards]"
                    style="font-family: 'Impact', 'Anton', 'Bebas Neue', sans-serif;">
           <span class="block text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
@@ -94,11 +95,12 @@ const props = defineProps<{
 
         <!-- Body text with blue accent -->
         <div class="mt-8 text-lg md:text-xl text-brand-blue/90 max-w-xl leading-relaxed font-medium
+                    text-center lg:text-left mx-auto lg:mx-0
                     animate-[fadeInUp_0.8s_ease-out_0.4s_backwards]"
              v-html="data.content" />
 
         <!-- BOLD CTAs -->
-        <div class="mt-12 flex flex-col sm:flex-row gap-5 animate-[fadeInUp_0.8s_ease-out_0.6s_backwards]">
+        <div class="mt-12 flex flex-col sm:flex-row gap-5 items-center lg:items-start animate-[fadeInUp_0.8s_ease-out_0.6s_backwards]">
           <!-- Primary CTA - MEGA BOLD -->
           <RouterLink :to="toRoute(data.cta_primary.url)"
                       class="group relative overflow-hidden">
@@ -143,6 +145,7 @@ const props = defineProps<{
 
         <!-- Decorative stats or trust indicators (optional) -->
         <div class="mt-10 md:mt-16 flex flex-wrap gap-4 sm:gap-8 text-brand-blue/70 text-sm uppercase tracking-widest
+                    justify-center lg:justify-start
                     animate-[fadeInUp_0.8s_ease-out_0.8s_backwards]">
           <div class="flex items-center gap-2">
             <div class="h-2 w-2 rounded-full bg-brand-gold shadow-[0_0_10px_rgba(252,211,77,0.8)] animate-pulse" />
